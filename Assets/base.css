@@ -44,5 +44,49 @@ input#search-bar{
   right: -45px;
 }
 
+.results-container {
+  clear: both;
+}
+
+img {
+  float: left;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 5%;
+}
+
+.results {
+  float: left;
+  margin-top: 7%;
+  width: 35%;
+  font-size: 23px;
+  font-family: futura, sans-serif;
+  font-weight: lighter;
+  /*border: 2px solid darkgrey;
+  border-radius: 10px;*/
+  padding: 2%;
+  line-height: 25px;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #eee8ef;
+  border-radius: .4em;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #eee8ef;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
 
 
