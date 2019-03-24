@@ -1,6 +1,6 @@
 const makeListBtn = document.getElementById('makeList');
 const olBookList = document.getElementById('olBookList');
-const modalBody = document.querySelector('.modal-body');
+const modalBody = document.querySelector('.result-body');
 const formSelectUser = document.getElementById('formSelectUser');
 const formFilterBooks = document.getElementById('formFilterBooks');
 const searchBook = document.getElementById('searchBook');
@@ -89,8 +89,6 @@ function checkForDuplicate(e) {
       }
       getBookDetails(e.target.id);
     }
-  // show bootstrap modal
-  $('#bookModal').modal(); 
 }
 
 
