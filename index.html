@@ -8,36 +8,30 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animate.css">
-  <title>UX Book List</title>
+  <title>Book Randomiser</title>
 </head>
-<body>
+<body class="bg-dark">
 
   <!-- Header -->
-  <div class="bg-dark">
+  <div class="">
     <div class="container">
-      <h1 class="py-5 text-white m-0">Recommended Book List</h1>
+      <h1 class="py-5 text-center text-white m-0">Book Randomiser</h1>
     </div>
   </div>
 
   <!-- Select Name and Filter Inputs -->
-  <div class="bg-light-blue">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7 pr-lg-5">
-          <form id="makeList">
-            <div class="form-row py-4 mb-3">
-              <div class="col-md-5">
-                <label class="font-italic my-1 mr-2" for="formSelectUser">List Books For:</label>
-                <select class="custom-select" id="formSelectUser">
-                  <option selected>Choose...</option>
-                  <option value="karl">List 1</option>
-                  <option value="trung">List 2</option>
-                  <option value="tim">List 3</option>
-                </select>
+  <div class="container">
+    <div class="">
+      <div class="">
+        <div class="card-header py-4 bg-light">
+          <form id="searchBook">
+            <label class="sr-only">Search Book</label>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" id="searchBookInput" class="form-control col-custom-input" placeholder="Search Title...">
               </div>
-              <div class="col-md-7 mt-3 mt-md-0">
-                <label class="font-italic my-1 mr-2" for="formFilterBooks">Filter Books</label>
-                <input type="text" id="formFilterBooks" class="form-control" placeholder="Start typing...">
+              <div class="col-auto">
+                <input type="submit" class="btn btn-primary col-custom-btn" value="Search">
               </div>
             </div>
           </form>
@@ -47,66 +41,10 @@
   </div>
 
   <!-- Main Content (Book List) -->
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-7 pr-md-4">
-        <ul id="olBookList" class="list-group shadow">
-          <li class="list-group-item list-group-item-secondary list-group-item-action text-muted font-italic booklist-placeholder">Select a tutor above to display their recommended book list</li>
-          <!-- JavaScript insert list items here -->
-        </ul>
-      </div>
+  <div class="container" id="results">
 
-      <!-- Search Book -->
-      <div class="col-md-5 pl-md-4">
-        <div class="card mt-4 mt-md-0 shadow">
-          <div class="card-header py-4 bg-light-blue">
-            <form id="searchBook">
-              <label class="sr-only">Search Book</label>
-              <div class="form-row">
-                <div class="col">
-                  <input type="text" id="searchBookInput" class="form-control col-custom-input" placeholder="Search Title...">
-                </div>
-                <div class="col-auto">
-                  <input type="submit" class="btn btn-primary col-custom-btn" value="Search">
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="card-body p-0">
-            <div>
-              <ol id="searchResults" class="list-group list-group-flush">
-                <!-- JavaScript insert search results here -->
-                <li class="list-group-item list-group-item-action text-muted font-italic booklist-placeholder">Lookup a book title</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <!-- Modal -->
-    <div class="modal fade" id="bookModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Book Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- JavaScript insert book details here -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="spacer-100"></div>
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

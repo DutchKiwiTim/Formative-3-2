@@ -1,19 +1,18 @@
-/* 
+/*
 colour scheme
-https://digitalsynopsis.com/design/website-color-schemes-palettes-combinations/
-(number 13)
-#D79922 Dark brown - rgba(215, 153, 34, 1)
-#EFE2BA Light brown - rgba(239, 226, 186, 1)
-#F13C20 Red - rgba(241, 60, 32, 1)
-#4056A1 Dark Blue - rgba(64, 86, 161, 1)
-#C5CBE3 Light Blue - rgba(197, 203, 227, 1)
+#e8dbcb
+#e3b9b3
+#613942
+#839974
+#36374b
 */
 
-@import url('https://fonts.googleapis.com/css?family=Merriweather:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700');
 
 body {
-  font-family: 'Merriweather', serif;
+  font-family: 'Roboto Mono', monospace;
 }
+
 p {
   line-height: 1.7;
 }
@@ -24,25 +23,25 @@ p {
 }
 
 .bg-dark {
-  background-color: rgba(64, 86, 161, 1)!important;
+  background-color: #36374b!important;
 }
-.bg-light-blue {
-  background-color: rgba(197, 203, 227, 1);
+.bg-light {
+  background-color: #e3b9b3;
 }
-.bg-lighter-blue {
-  background-color: rgba(197, 203, 227, 0.5);
+.bg-lighter {
+  background-color: #e8dbcb;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #4056A1;
-  border-color: #4056A1;
+  background-color: #e3b9b3;
+  border-color: #e3b9b3;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #4056A1;
+  background-color: #e3b9b3;
   filter: brightness(80%);
-  border-color: #4056A1;
+  border-color: #e3b9b3;
 }
 .btn-secondary {
   color: #000;
@@ -60,15 +59,6 @@ p {
   border-color: #D79922;
 }
 
-.list-group, .list-group-item {
-  list-style-type: none!important;
-}
-.list-group-item {
-  cursor: pointer!important;
-}
-#searchResults>li {
-  font-size: 15px;
-}
 
 .booklist-placeholder:hover {
   cursor: default!important;
