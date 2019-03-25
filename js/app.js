@@ -1,63 +1,54 @@
+<<<<<<< HEAD
 const makeListBtn = document.getElementById('makeList');
 const olBookList = document.getElementById('olBookList');
 const modalBody = document.querySelector('.result-body');
 const formSelectUser = document.getElementById('formSelectUser');
 const formFilterBooks = document.getElementById('formFilterBooks');
+=======
+// 1. Input search query
+// 2. Return X amount of books (max 40)
+// 3. Loop through results and filter by: pagecount, published date, 
+
+
+const resultBody = document.querySelector('.result-body');
+>>>>>>> de5c88fda87832947d5302e90b472354d68ea293
 const searchBook = document.getElementById('searchBook');
 const searchBookInput = document.getElementById('searchBookInput');
-const searchResults = document.getElementById('searchResults');
 let currentBookInModal;
 
 
 // EVENT LISTENERS
+<<<<<<< HEAD
 //formSelectUser.addEventListener('change', selectUser);
 //formFilterBooks.addEventListener('keyup', filterBooks);
+=======
+>>>>>>> de5c88fda87832947d5302e90b472354d68ea293
 searchBook.addEventListener('submit', searchFindBooks);
-// only load these event listeners if there are books on the page
-function loadEventListeners () {
-  if (!olBookList.firstElementChild.classList.contains('booklist-placeholder')) {
-    olBookList.addEventListener('click', checkForDuplicate);
-  }
-  if (!searchResults.firstElementChild.classList.contains('booklist-placeholder')) {
-    searchResults.addEventListener('click', checkForDuplicate);
-  }
-}
 
 
-// BOOK TITLES LIST - STEP 1 - remove other lists if present in DOM and then determine selected person to build new list
-function selectUser(e) {
-  // remove other list from DOM first
-  while (olBookList.firstChild) {
-    olBookList.removeChild(olBookList.firstChild);
-  }
-  // determine selected person to build new list
-  const selectedUser = e.target.value;
-  if (allUsers.hasOwnProperty(selectedUser)) {
-    getAllBookTitles(allUsers[selectedUser]);
-  }
-  e.preventDefault();
-}
-
-
-// BOOK TITLES LIST - STEP 2 - pull book titles from api
-function getAllBookTitles(selectedList) {
-  selectedList.forEach(isbn => {
-    fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn, { 
+// RANDOMISE BOOK - STEP 1 - Get max amount of books from api
+function searchFindBooks(e) {
+  const searchTerm = searchBookInput.value;
+  fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=40', {
       method: 'get',
     })
     .then(response => { return response.json(); })
     .then(data => {
-      // read book title from data
-      let bookTitle = data.items[0].volumeInfo.title;
-      // run function to create li with isbn and book title as parameters
-      createListElement(isbn, bookTitle);
 
-      console.log(data)
-    })
-    .catch(error => {   
-      console.log(error);
+      // console.log(data.items);
+      filterResults(data.items);
     });
+
+e.preventDefault();
+}
+
+
+// RANDOMISE BOOK - STEP 2 - Filter array
+function filterResults(r) {
+  r.forEach(result => {
+    // console.log(result.volumeInfo.pageCount)
   });
+<<<<<<< HEAD
 };
 
 // BOOK TITLES LIST - STEP 3 - create UI 
@@ -89,48 +80,49 @@ function checkForDuplicate(e) {
       }
       getBookDetails(e.target.id);
     }
+=======
+  randomiseBook(r);
+>>>>>>> de5c88fda87832947d5302e90b472354d68ea293
 }
 
 
-// MODAL CONTENT - STEP 2
-function getBookDetails(isbn) {
-  fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn, { 
-    method: 'get',
-    })
-    .then(response => { return response.json(); })
-    .then(data => {
-      const volumeInfo = data.items[0].volumeInfo;   
+// RANDOMISE BOOK - STEP 3 - Randomise
+function randomiseBook(r) {
 
-      const bookTitle = volumeInfo.title;
-      const BookAuthor = volumeInfo.authors[0];
-      const BookThumb = volumeInfo.imageLinks.thumbnail;
-      const BookPageCount = volumeInfo.pageCount;
-      const BookLink = volumeInfo.canonicalVolumeLink;        
-      let subtitle = volumeInfo.subtitle;
-      let Bookdescription = volumeInfo.description;
-      if (!subtitle) {
-        subtitle = 'No subtitle found for this book.';
-      }
-      if (!Bookdescription) {
-        Bookdescription = 'No description found for this book';
-      }
-      
-      createModalContent(bookTitle, BookAuthor, isbn, BookThumb, Bookdescription, BookPageCount, BookLink, subtitle);
-      // set the global variable so that it can be checked for duplicate content on the next click event
-      currentBookInModal = isbn;
-
-    })
-    .catch(error => {   
-      console.log(error);
-    }); 
+  const randomBook = r[Math.floor(Math.random()*r.length)];
+  console.log(randomBook.volumeInfo.title);
 }
 
 
-// MODAL CONTENT - STEP 3
+// RANDOMISE BOOK - STEP 4 - Prepare UI elements
+function searchShowBooks() {
+  // remove previous search results if any
+  while (searchResults.firstChild) {
+    searchResults.removeChild(searchResults.firstChild);
+  }
+  const bookTitle = volumeInfo.title;
+  const BookAuthor = volumeInfo.authors[0];
+  const BookThumb = volumeInfo.imageLinks.thumbnail;
+  const BookPageCount = volumeInfo.pageCount;
+  const BookLink = volumeInfo.canonicalVolumeLink;        
+  let subtitle = volumeInfo.subtitle;
+  let Bookdescription = volumeInfo.description;
+  if (!subtitle) {
+    subtitle = 'No subtitle found for this book.';
+  }
+  if (!Bookdescription) {
+    Bookdescription = 'No description found for this book';
+  }
+  
+  createModalContent(bookTitle, BookAuthor, isbn, BookThumb, Bookdescription, BookPageCount, BookLink, subtitle);
+}
+
+
+// RANDOMISE BOOK - STEP 5 - Create UI
 function createModalContent(a, b, c, d, e, f, g, h) {
 
-  const modalDiv = document.createElement('div');
-  modalDiv.innerHTML = `
+  const contentDiv = document.createElement('div');
+  contentDiv.innerHTML = `
   <div id="modal-book-details" class="row mb-3">
     <div class="col">
           <ul class="list-group list-group-flush modal-content-list-titles mr-1">
@@ -149,71 +141,5 @@ function createModalContent(a, b, c, d, e, f, g, h) {
     <p>${e}</p>
   </div>
   `;
-  modalBody.appendChild(modalDiv);
-}
-
-
-
-// SEARCH BOOK - STEP 1 - Get Search Results
-function searchFindBooks(e) {
-  const searchTerm = searchBookInput.value;
-  fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=5', {
-      method: 'get',
-    })
-    .then(response => { return response.json(); })
-    .then(data => {
-      searchShowBooks(data.items[0], data.items[1], data.items[2], data.items[3], data.items[4]);
-      console.log(data)
-    })
-    .catch(error => {   
-      console.log(error);
-    });
-
-e.preventDefault();
-}
-
-
-// SEARCH BOOK - STEP 2 - Create UI
-function searchShowBooks(first, second, third, fourth, fifth) {
-  // remove previous search results if any
-  while (searchResults.firstChild) {
-    searchResults.removeChild(searchResults.firstChild);
-  }
-  // create array and fill it with search results
-  const results = [first, second, third, fourth, fifth];
-  // create html and insert into DOM for each search result
-  results.forEach(result => {
-    const li = document.createElement('li');
-    li.id = result.volumeInfo.industryIdentifiers[0].identifier;
-    li.classList.add('list-group-item', 'list-group-item-action', 'numbered');
-    li.innerText = result.volumeInfo.title;
-    const btn = document.createElement('a');
-    btn.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'float-right', 'mt-1', 'mb-2', 'animated', 'flipInX');
-    btn.innerText = 'Add to List';
-    li.appendChild(btn);
-    searchResults.appendChild(li);
-  });
-  searchBookInput.value = '';
-
-  // load event listener on list items
-  loadEventListeners ();
-}
-
-
-// FILTER BOOKS
-function filterBooks(e) {
-  // only filter books if there are books in the DOM
-  if (!olBookList.firstElementChild.classList.contains('booklist-placeholder')) {
-    
-    const text = e.target.value.toLowerCase();
-    
-    olBookList.childNodes.forEach(book => {
-      const item = book.innerText;
-      if (item.toLowerCase().indexOf(text) != -1) {
-        book.style.display = 'list-item';
-      } else {
-        book.style.display = 'none';
-      }
-    })
-  }
+  resultBody.appendChild(contentDiv);
 }
