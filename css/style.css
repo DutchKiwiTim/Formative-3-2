@@ -17,11 +17,6 @@ p {
   line-height: 1.7;
 }
 
-.spacer-100 {
-  width: 100%;
-  height: 100px;
-}
-
 .bg-dark {
   background-color: #36374b!important;
 }
@@ -32,66 +27,59 @@ p {
   background-color: #e8dbcb;
 }
 
-.btn-primary {
+/*-------------------------Input Styling------------------------*/
+
+.form-input {
+  padding: 15px;
+}
+
+.button-primary {
   color: #fff;
   background-color: #e3b9b3;
   border-color: #e3b9b3;
+  padding: 15px;
 }
-.btn-primary:hover {
+
+.button-primary:link,
+.button-primary:visited,
+.button-primary:hover,
+.button-primary:active,
+.button-primary:not(:disabled):not(.disabled).active,
+.button-primary:not(:disabled):not(.disabled):active,
+.show>.button-primary.dropdown-toggle {
   color: #fff;
-  background-color: #e3b9b3;
-  filter: brightness(80%);
-  border-color: #e3b9b3;
+  background-color: #e3b9b3!important;
+  border-color: #e3b9b3!important;
+  box-shadow: 0 0 0 0.2rem rgba(227,185,179, 0.5);
 }
-.btn-secondary {
-  color: #000;
-  background-color: #D79922;
-  border-color: #D79922;
-}
-.btn-outline-secondary {
-  color: #D79922;
-  border-color: #D79922;
-}
-.btn-secondary:hover, .btn-outline-secondary:hover {
-  color: #000;
-  background-color: #D79922;
-  filter: brightness(95%);
-  border-color: #D79922;
+
+.button-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(227,185,179, 0.5);
 }
 
 
-.booklist-placeholder:hover {
-  cursor: default!important;
+/*---------------Range Input--------------*/
+
+input[type="range"][multiple] {
+  display: block;
+  height: 2em;
+  margin: 0;
+  pointer-events: none;
 }
-#olBookList>li.booklist-placeholder:hover {
-  background-color: rgba(239, 226, 186, 0.9)!important;
-}
-#searchResults>li.booklist-placeholder:hover {
-  background-color: rgba(197, 203, 227, 0.25)!important;
+input[type="range"][multiple] + input[type="range"][multiple] {
+  margin-top: -2em;
 }
 
-/* Blue list items */
-.list-group-item:nth-child(odd) {
-  background-color: rgba(197, 203, 227, 0.25);
-}
-.list-group-item:nth-child(even) {
-  background-color: rgba(197, 203, 227, 0.35); 
-}
-.list-group-item.list-group-item-action:focus, .list-group-item.list-group-item-action:hover {
-  background-color: rgba(64, 86, 161, 1);
-  color: #fff;
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
 }
 
-/* Yellow list items */
-.list-group-item-secondary:nth-child(odd) {
-  background-color: rgba(239, 226, 186, 0.9);
+input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
 }
-.list-group-item-secondary:nth-child(even) {
-  background-color: rgba(239, 226, 186, 0.7); 
-}
-.list-group-item-secondary.list-group-item-action:focus, .list-group-item-secondary.list-group-item-action:hover {
-  background-color: rgba(215, 153, 34, 0.8);
-  color: #000;
+
+input[type="range"]::-ms-thumb {
+  pointer-events: all;
 }
 
 
