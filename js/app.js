@@ -22,9 +22,8 @@ function searchFindBooks(e) {
     .then(response => { return response.json(); })
     .then(data => {
 
-      const resultsArr = data.items;
-      // console.log(data.items)
-      filterResults(resultsArr);
+      // console.log(data.items);
+      filterResults(data.items);
     });
 
 e.preventDefault();
@@ -34,12 +33,9 @@ e.preventDefault();
 // RANDOMISE BOOK - STEP 2 - Filter array
 function filterResults(r) {
   r.forEach(result => {
-
-
-  const filteredArr = r;
-    
+    // console.log(result.volumeInfo.pageCount)
   });
-  randomiseBook(filteredArr);
+  randomiseBook(r);
 }
 
 
@@ -47,7 +43,7 @@ function filterResults(r) {
 function randomiseBook(r) {
 
   const randomBook = r[Math.floor(Math.random()*r.length)];
-  console.log(randomBook);
+  console.log(randomBook.volumeInfo.title);
 }
 
 
