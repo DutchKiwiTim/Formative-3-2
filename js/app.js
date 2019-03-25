@@ -10,8 +10,8 @@ let currentBookInModal;
 
 
 // EVENT LISTENERS
-formSelectUser.addEventListener('change', selectUser);
-formFilterBooks.addEventListener('keyup', filterBooks);
+//formSelectUser.addEventListener('change', selectUser);
+//formFilterBooks.addEventListener('keyup', filterBooks);
 searchBook.addEventListener('submit', searchFindBooks);
 // only load these event listeners if there are books on the page
 function loadEventListeners () {
