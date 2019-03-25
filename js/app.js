@@ -1,28 +1,15 @@
-<<<<<<< HEAD
-const makeListBtn = document.getElementById('makeList');
-const olBookList = document.getElementById('olBookList');
-const modalBody = document.querySelector('.result-body');
-const formSelectUser = document.getElementById('formSelectUser');
-const formFilterBooks = document.getElementById('formFilterBooks');
-=======
 // 1. Input search query
 // 2. Return X amount of books (max 40)
 // 3. Loop through results and filter by: pagecount, published date, 
 
 
 const resultBody = document.querySelector('.result-body');
->>>>>>> de5c88fda87832947d5302e90b472354d68ea293
 const searchBook = document.getElementById('searchBook');
 const searchBookInput = document.getElementById('searchBookInput');
 let currentBookInModal;
 
 
 // EVENT LISTENERS
-<<<<<<< HEAD
-//formSelectUser.addEventListener('change', selectUser);
-//formFilterBooks.addEventListener('keyup', filterBooks);
-=======
->>>>>>> de5c88fda87832947d5302e90b472354d68ea293
 searchBook.addEventListener('submit', searchFindBooks);
 
 
@@ -36,77 +23,35 @@ function searchFindBooks(e) {
     .then(data => {
 
       // console.log(data.items);
-      filterResults(data.items);
+       randomiseBook(data.items);
     });
 
 e.preventDefault();
 }
 
 
-// RANDOMISE BOOK - STEP 2 - Filter array
-function filterResults(r) {
-  r.forEach(result => {
-    // console.log(result.volumeInfo.pageCount)
-  });
-<<<<<<< HEAD
-};
-
-// BOOK TITLES LIST - STEP 3 - create UI 
-function createListElement(i, t) {
-  // create new li
-  const newLi = document.createElement('li');
-  // add isbn as id
-  newLi.id = i;
-  // add classes to li
-  newLi.classList.add('list-group-item', 'list-group-item-secondary', 'list-group-item-action', 'animated', 'flipInX');
-  // insert title in li
-  newLi.innerHTML = t;
-  // append li to ol
-  olBookList.appendChild(newLi);
-
-  // load event listener on list items
-  loadEventListeners ();
-};
-
-
-
-// MODAL CONTENT - STEP 1
-function checkForDuplicate(e) {
-    // if target content is already loaded, do not load again
-    if (e.target.id !== currentBookInModal) {
-      // otherwise remove content
-      if (modalBody.firstElementChild) {
-        modalBody.removeChild(modalBody.firstElementChild);
-      }
-      getBookDetails(e.target.id);
-    }
-=======
-  randomiseBook(r);
->>>>>>> de5c88fda87832947d5302e90b472354d68ea293
-}
-
-
-// RANDOMISE BOOK - STEP 3 - Randomise
+// RANDOMISE BOOK - STEP 2 - Randomise
 function randomiseBook(r) {
 
   const randomBook = r[Math.floor(Math.random()*r.length)];
-  console.log(randomBook.volumeInfo.title);
+  console.log(randomBook);
+  searchShowBooks(randomBook);
 }
 
 
-// RANDOMISE BOOK - STEP 4 - Prepare UI elements
-function searchShowBooks() {
+// RANDOMISE BOOK - STEP 3 - Prepare UI elements
+function searchShowBooks(b) {
   // remove previous search results if any
-  while (searchResults.firstChild) {
-    searchResults.removeChild(searchResults.firstChild);
+  while (resultBody.firstChild) {
+    resultBody.removeChild(resultBody.firstChild);
   }
-  const bookTitle = volumeInfo.title;
-  const BookAuthor = volumeInfo.authors[0];
-  const BookThumb = volumeInfo.imageLinks.thumbnail;
-  const BookPageCount = volumeInfo.pageCount;
-  const BookLink = volumeInfo.canonicalVolumeLink;        
-  let subtitle = volumeInfo.subtitle;
-  let Bookdescription = volumeInfo.description;
+  const bookTitle = b.volumeInfo.title;
+  // const BookAuthor = b.volumeInfo.authors[0];
+  const BookThumb = b.volumeInfo.imageLinks.thumbnail;
+  const BookPageCount = b.volumeInfo.pageCount;
+  const BookLink = b.volumeInfo.canonicalVolumeLink;        
+  let subtitle = b.volumeInfo.subtitle;
+  let Bookdescription = b.volumeInfo.description;
   if (!subtitle) {
     subtitle = 'No subtitle found for this book.';
   }
@@ -114,12 +59,12 @@ function searchShowBooks() {
     Bookdescription = 'No description found for this book';
   }
   
-  createModalContent(bookTitle, BookAuthor, isbn, BookThumb, Bookdescription, BookPageCount, BookLink, subtitle);
+  createModalContent(bookTitle, BookThumb, Bookdescription, BookPageCount, BookLink, subtitle);
 }
 
 
-// RANDOMISE BOOK - STEP 5 - Create UI
-function createModalContent(a, b, c, d, e, f, g, h) {
+// RANDOMISE BOOK - STEP 4 - Create UI
+function createModalContent(a, d, e, f, g, h) {
 
   const contentDiv = document.createElement('div');
   contentDiv.innerHTML = `
@@ -127,8 +72,7 @@ function createModalContent(a, b, c, d, e, f, g, h) {
     <div class="col">
           <ul class="list-group list-group-flush modal-content-list-titles mr-1">
             <li class="list-group-item"><h5>${a}</h5><p class="font-italic mb-0 mt-2">"${h}"</p></li>
-            <li class="list-group-item"><span class="font-weight-bold">Author:</span> ${b}</li>
-            <li class="list-group-item"><span class="font-weight-bold">ISBN:</span> ${c}</li>
+            <li class="list-group-item"><span class="font-weight-bold">Author:</span></li>
             <li class="list-group-item"><span class="font-weight-bold">Pages:</span> ${f}</li>
             <li class="list-group-item"><span class="font-weight-bold">Full Details:</span> <a href="${g}" target="_blank">Google Books</a></li>
             <li class="list-group-item"><span class="font-weight-bold">Buy From:</span> <a href="amazon.com" target="_blank">Amazon</a> | <a href="https://www.fishpond.co.nz" target="_blank">Fishpond</a> | <a href="https://www.mightyape.co.nz/books" target="_blank">Mighty Ape</a></li>
