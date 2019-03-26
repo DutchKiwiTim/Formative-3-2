@@ -82,5 +82,21 @@ input[type="range"]::-ms-thumb {
   pointer-events: all;
 }
 
+.result-container {
+  background: white;
+  border-radius: 10px;
+}
 
+.col {
+  max-width: 50%;
+  margin-left: 10%;
+}
+
+img {
+  width: 70%;
+}
+
+.description {
+      margin-left: 10%;
+}
 

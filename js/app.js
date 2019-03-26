@@ -46,7 +46,7 @@ function searchShowBooks(b) {
     resultBody.removeChild(resultBody.firstChild);
   }
   const bookTitle = b.volumeInfo.title;
-  // const BookAuthor = b.volumeInfo.authors[0];
+  const BookAuthor = b.volumeInfo.authors;
   const BookThumb = b.volumeInfo.imageLinks.thumbnail;
   const BookPageCount = b.volumeInfo.pageCount;
   const BookLink = b.volumeInfo.canonicalVolumeLink;        
@@ -59,30 +59,31 @@ function searchShowBooks(b) {
     Bookdescription = 'No description found for this book';
   }
   
-  createModalContent(bookTitle, BookThumb, Bookdescription, BookPageCount, BookLink, subtitle);
+  createModalContent(bookTitle, BookThumb, BookAuthor, Bookdescription, BookPageCount, BookLink, subtitle);
 }
 
-
 // RANDOMISE BOOK - STEP 4 - Create UI
-function createModalContent(a, d, e, f, g, h) {
+function createModalContent(a, d, c, e, f, g, h) {
 
   const contentDiv = document.createElement('div');
   contentDiv.innerHTML = `
-  <div id="modal-book-details" class="row mb-3">
-    <div class="col">
-          <ul class="list-group list-group-flush modal-content-list-titles mr-1">
-            <li class="list-group-item"><h5>${a}</h5><p class="font-italic mb-0 mt-2">"${h}"</p></li>
-            <li class="list-group-item"><span class="font-weight-bold">Author:</span></li>
-            <li class="list-group-item"><span class="font-weight-bold">Pages:</span> ${f}</li>
-            <li class="list-group-item"><span class="font-weight-bold">Full Details:</span> <a href="${g}" target="_blank">Google Books</a></li>
-            <li class="list-group-item"><span class="font-weight-bold">Buy From:</span> <a href="amazon.com" target="_blank">Amazon</a> | <a href="https://www.fishpond.co.nz" target="_blank">Fishpond</a> | <a href="https://www.mightyape.co.nz/books" target="_blank">Mighty Ape</a></li>
-          </ul>
-    </div>  
-  <div class="col-md-4 col-lg-3 mt-4 mt-md-0">
-    <img class="modal-content-thumbnail" src="${d}">
-  </div>
-  <div class="modal-content-description p-4">
-    <p>${e}</p>
+  <div class="result-container m-5 p-4">
+    <div id="modal-book-details" class="row mb-3 mt-3">
+      <div class="col">
+            <ul class="list-group list-group-flush modal-content-list-titles mr-1">
+              <li class="list-group-item"><h5>${a}</h5><p class="font-italic mb-0 mt-2">"${h}"</p></li>
+              <li class="list-group-item"><span class="font-weight-bold">Author:</span> ${c}</li>
+              <li class="list-group-item"><span class="font-weight-bold">Pages:</span> ${f}</li>
+              <li class="list-group-item"><span class="font-weight-bold">Full Details:</span> <a href="${g}" target="_blank">Google Books</a></li>
+              <li class="list-group-item"><span class="font-weight-bold">Buy From:</span> <a href="amazon.com" target="_blank">Amazon</a> | <a href="https://www.fishpond.co.nz" target="_blank">Fishpond</a> | <a href="https://www.mightyape.co.nz/books" target="_blank">Mighty Ape</a></li>
+            </ul>
+      </div>  
+    <div class="col-md-4 col-lg-3 mt-4 mt-md-0">
+      <img class="modal-content-thumbnail" src="${d}">
+    </div>
+    <div class="modal-content-description p-4 col-12">
+      <p class="col-9 description">${e}</p>
+    </div>
   </div>
   `;
   resultBody.appendChild(contentDiv);
