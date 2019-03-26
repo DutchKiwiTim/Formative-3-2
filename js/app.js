@@ -12,7 +12,6 @@ let currentBookInModal;
 // EVENT LISTENERS
 searchBook.addEventListener('submit', searchFindBooks);
 
-
 // RANDOMISE BOOK - STEP 1 - Get max amount of books from api
 function searchFindBooks(e) {
   const searchTerm = searchBookInput.value;
